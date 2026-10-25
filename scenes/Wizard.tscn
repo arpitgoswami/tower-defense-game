@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/wizard.gd" id="1_script"]
+[ext_resource type="SpriteFrames" path="res://assets/frames/wizard_frames.tres" id="2_frames"]
+[ext_resource type="PackedScene" path="res://scenes/Bolt.tscn" id="3_bolt"]
+
+[node name="Wizard" type="Node2D"]
+script = ExtResource("1_script")
+bolt_scene = ExtResource("3_bolt")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+offset = Vector2(0, -12)
+sprite_frames = ExtResource("2_frames")
+animation = &"idle"

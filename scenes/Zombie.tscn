@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/zombie.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/shadow.png" id="2_shadow"]
+[ext_resource type="Shader" path="res://assets/shaders/flash.gdshader" id="3_shader"]
+[ext_resource type="SpriteFrames" path="res://assets/frames/zombie_normal_frames.tres" id="4_frames"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_flash"]
+resource_local_to_scene = true
+shader = ExtResource("3_shader")
+shader_parameter/flash = 0.0
+
+[node name="Zombie" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -1)
+scale = Vector2(2, 2)
+texture = ExtResource("2_shadow")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_flash")
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("4_frames")
+animation = &"walk"

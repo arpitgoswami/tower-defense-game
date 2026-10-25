@@ -1,0 +1,48 @@
+[gd_resource type="Theme" load_steps=5 format=3]
+
+[sub_resource type="StyleBoxFlat" id="btn_normal"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.17, 0.14, 0.27, 0.95)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.55, 0.47, 0.85, 1)
+
+[sub_resource type="StyleBoxFlat" id="btn_hover"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.26, 0.21, 0.4, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.85, 0.35, 1)
+
+[sub_resource type="StyleBoxFlat" id="panel"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.09, 0.07, 0.15, 0.88)
+border_width_bottom = 4
+border_width_top = 4
+border_width_left = 4
+border_width_right = 4
+border_color = Color(0.4, 0.33, 0.65, 1)
+
+[resource]
+default_font_size = 32
+Button/colors/font_color = Color(0.95, 0.95, 1, 1)
+Button/colors/font_hover_color = Color(1, 0.9, 0.5, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/normal = SubResource("btn_normal")
+Button/styles/hover = SubResource("btn_hover")
+Button/styles/pressed = SubResource("btn_hover")
+Button/styles/focus = SubResource("btn_hover")
+PanelContainer/styles/panel = SubResource("panel")

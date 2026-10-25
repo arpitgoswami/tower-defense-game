@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/impact.gd" id="1_script"]
+[ext_resource type="SpriteFrames" path="res://assets/frames/impact_frames.tres" id="2_frames"]
+
+[node name="Impact" type="AnimatedSprite2D"]
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("2_frames")
+animation = &"hit"
+script = ExtResource("1_script")

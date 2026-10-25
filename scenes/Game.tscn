@@ -1,0 +1,78 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_game"]
+[ext_resource type="Texture2D" path="res://assets/sprites/grass_bg.png" id="2_grass"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tower.png" id="3_tower"]
+[ext_resource type="Texture2D" path="res://assets/sprites/shadow.png" id="4_shadow"]
+[ext_resource type="Script" path="res://scripts/tower.gd" id="5_towerscript"]
+[ext_resource type="Script" path="res://scripts/range_circle.gd" id="6_range"]
+[ext_resource type="PackedScene" path="res://scenes/Wizard.tscn" id="7_wizard"]
+[ext_resource type="Script" path="res://scripts/wave_spawner.gd" id="8_spawner"]
+[ext_resource type="PackedScene" path="res://scenes/Zombie.tscn" id="9_zombie"]
+[ext_resource type="PackedScene" path="res://scenes/HUD.tscn" id="10_hud"]
+[ext_resource type="PackedScene" path="res://scenes/DamageNumber.tscn" id="11_dmg"]
+[ext_resource type="PackedScene" path="res://scenes/Coin.tscn" id="12_coin"]
+[ext_resource type="PackedScene" path="res://scenes/DeathParticles.tscn" id="13_death"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tree_0.png" id="14_t0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tree_1.png" id="15_t1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/tree_2.png" id="16_t2"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_game")
+tree_textures = Array[Texture2D]([ExtResource("14_t0"), ExtResource("15_t1"), ExtResource("16_t2")])
+damage_number_scene = ExtResource("11_dmg")
+coin_scene = ExtResource("12_coin")
+death_scene = ExtResource("13_death")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -10
+offset_right = 960.0
+offset_bottom = 540.0
+mouse_filter = 2
+texture = ExtResource("2_grass")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(480, 270)
+zoom = Vector2(2, 2)
+
+[node name="Entities" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tower" type="Node2D" parent="Entities"]
+position = Vector2(480, 270)
+script = ExtResource("5_towerscript")
+
+[node name="RangeCircle" type="Node2D" parent="Entities/Tower"]
+z_index = -5
+z_as_relative = false
+script = ExtResource("6_range")
+
+[node name="Shadow" type="Sprite2D" parent="Entities/Tower"]
+z_index = -1
+position = Vector2(0, 2)
+scale = Vector2(7, 4)
+texture = ExtResource("4_shadow")
+
+[node name="Sprite" type="Sprite2D" parent="Entities/Tower"]
+position = Vector2(0, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("3_tower")
+offset = Vector2(0, -26)
+
+[node name="Wizard" parent="Entities/Tower" instance=ExtResource("7_wizard")]
+position = Vector2(0, -80)
+
+[node name="Effects" type="Node2D" parent="."]
+z_index = 5
+
+[node name="FloatText" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="WaveSpawner" type="Node" parent="."]
+script = ExtResource("8_spawner")
+zombie_scene = ExtResource("9_zombie")
+entities_path = NodePath("../Entities")
+
+[node name="HUD" parent="." instance=ExtResource("10_hud")]
